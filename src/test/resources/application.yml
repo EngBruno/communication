@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: communication
+  jpa:
+    database: postgresql
+    show-sql: true
+  flyway:
+    user: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    schemas: communication
+    url: ${DB_URL}
+    enabled: true
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    hikari:
+      maximum-pool-size: 1
+  
+  jackson:
+    default-property-inclusion: NON_NULL
+
+ 

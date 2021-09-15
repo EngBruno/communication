@@ -1,16 +1,13 @@
 package com.communication.schedulingorder;
 
-import ch.qos.logback.core.joran.util.beans.BeanDescriptionFactory;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.net.URI;
 
 @RestController
-@RequestMapping("ordem/v1")
+@RequestMapping("/ordem/v1")
 public class SchedulingOrderResource {
 
     private final SchedulingOrderService schedulingOrderService;
@@ -22,10 +19,21 @@ public class SchedulingOrderResource {
     }
 
     @PostMapping
-    public ResponseEntity<Void> createSchedulingOrder(@RequestBody SchedulingOrderRequest schedulingOrderRequest, HttpServletResponse response){
-        SchedulingOrder model = this.schedulingOrderService.save(mapper.toModel(schedulingOrderRequest));
+    public ResponseEntity<Void> createSchedulingOrder(@Valid @RequestBody SchedulingOrderRequest schedulingOrderRequest, HttpServletResponse response){
+        SchedulingOrder model = this.schedulingOrderService.save(schedulingOrderRequest);
         return ResponseEntity.created(URI.create("/conta_bancaria/"+model.getId())).build();
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<SchedulingOrderResponse> createSchedulingOrder(@PathVariable(name="id",required=true) Long id){
+        SchedulingOrderResponse schedulingOrderResponse = mapper.toSchedulingOrderResponse(this.schedulingOrderService.finById(id).get());
+        return ResponseEntity.ok(schedulingOrderResponse);
+    }
+
+    @PutMapping
+    public ResponseEntity<Void> cancelSchedulingOrder(@Valid @RequestBody SchedulingOrderStatusRequest schedulingOrderStatusRequest, HttpServletResponse response){
+        SchedulingOrder model = this.schedulingOrderService.cancel(schedulingOrderStatusRequest);
+        return ResponseEntity.created(URI.create("/conta_bancaria/"+model.getId())).build();
+    }
 
 }

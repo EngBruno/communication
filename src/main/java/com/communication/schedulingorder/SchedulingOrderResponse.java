@@ -13,7 +13,9 @@ public class SchedulingOrderResponse {
     @JsonProperty("date_scheduling")
     private final LocalDate dateScheduling;
     private final String receiver;
-    private final String mensage;
+    private final String message;
+    private final String email;
+    private final String cellPhone;
     @JsonProperty("type_communication")
     private final String typeCommunication;
 
