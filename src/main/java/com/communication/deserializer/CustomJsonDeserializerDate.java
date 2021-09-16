@@ -1,4 +1,4 @@
-package com.communication;
+package com.communication.deserializer;
 
 import java.io.IOException;
 import java.text.ParseException;
