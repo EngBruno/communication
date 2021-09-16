@@ -3,12 +3,13 @@ package com.communication.model;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Builder
 @Entity
 @AllArgsConstructor
+@NoArgsConstructor
 @Table(schema = "communication",name = "scheduling_order")
 public class SchedulingOrder {
 
@@ -17,19 +18,17 @@ public class SchedulingOrder {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "communication.scheduling_order_id_seq")
     private Long id;
 
-    private LocalDate dateScheduling;
+    private LocalDateTime dateScheduling;
     private String message;
-    private final String email;
-    private final String cellPhone;
+    private String email;
+    private String cellPhone;
     private String typeCommunication;
-    private Boolean status;
+    private Boolean activity;
 
 
     public void activite() {
-        this.status = true;
+        this.activity = true;
     }
 
-    public void cancel() {
-        this.status = false;
-    }
+    public void cancel() {this.activity = false;}
 }

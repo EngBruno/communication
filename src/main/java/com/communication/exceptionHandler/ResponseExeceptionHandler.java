@@ -37,15 +37,13 @@ import com.fasterxml.jackson.databind.JsonMappingException.Reference;
 @ControllerAdvice
 public class ResponseExeceptionHandler extends ResponseEntityExceptionHandler {
 
-	
 	@Autowired
 	private MessageSource messageSource;
 	private String fields;
 	
 	Locale ptLocale = new Locale("pt", "BR");
 	ResourceBundle resourceBundle = ResourceBundle.getBundle("message",ptLocale);
-	
-	@SuppressWarnings("Resolver quando nao conseguir fazer o casting")
+
 	@Override
 	protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex,
 			HttpHeaders headers, HttpStatus status, WebRequest request) {
@@ -54,11 +52,11 @@ public class ResponseExeceptionHandler extends ResponseEntityExceptionHandler {
 			this.fields = result.getPath().stream().map(Reference::getFieldName).collect(Collectors.joining("."));
 			String message = resourceBundle.getString("messagem.invalida");
 			String messageForDeveloper = ex.getCause().toString();
-			return handleExceptionInternal(ex, new Erro(message, messageForDeveloper,this.fields), headers, status, request);
+			return handleExceptionInternal(ex, new Erro(""+status.value(),message, this.fields,messageForDeveloper), headers, status, request);
 		}else {
 			String message = resourceBundle.getString("messagem.invalida");
 			String messageForDeveloper = ex.getCause().toString();
-			return handleExceptionInternal(ex, new Erro(message, messageForDeveloper,null), headers, status, request);
+			return handleExceptionInternal(ex, new Erro(status.toString(),message, messageForDeveloper,null), headers, status, request);
 		}
 	}
 	
@@ -89,11 +87,11 @@ public class ResponseExeceptionHandler extends ResponseEntityExceptionHandler {
 	}
 	
 	@ExceptionHandler({ ObjectMessageException.class })
-	public ResponseEntity<Object> handlePessoaInexistenteException(ObjectMessageException ex,WebRequest request) {
-		String messageForUser = ex.getMessage();
-		String messageForDeveloper = ex.toString();
-		HttpStatus status = ex.getStatus();
-		return handleExceptionInternal(ex, new Erro(messageForUser, messageForDeveloper,ex.getField()), new HttpHeaders(), status, request);
+	public ResponseEntity<Object> handleObjectMessageException(ObjectMessageException ex,WebRequest request) {
+		return handleExceptionInternal(ex, new Erro(""+ex.getStatus().value(),
+													ex.getMessage(),
+													ex.getField(),
+													ex.toString()), new HttpHeaders(), ex.getStatus(), request);
 	}
 	
 	
@@ -102,9 +100,7 @@ public class ResponseExeceptionHandler extends ResponseEntityExceptionHandler {
 		
 		for (FieldError fieldError : bindingResult.getFieldErrors()) {
 			String messageForUser = messageSource.getMessage(fieldError, LocaleContextHolder.getLocale());
-			String messageForDeveloper = fieldError.toString();
-			
-			erros.add(new Erro(messageForUser, messageForDeveloper,fieldError.getField()));
+			erros.add(new Erro("400",messageForUser, fieldError.getField(),fieldError.toString()));
 		}
 		return erros;
 	}

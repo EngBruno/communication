@@ -21,5 +21,6 @@ spring:
       maximum-pool-size: 1
 
   jackson:
+    deserialization:
+      fail-on-unknown-properties: true
     default-property-inclusion: NON_NULL
- 

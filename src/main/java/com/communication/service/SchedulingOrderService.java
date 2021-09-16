@@ -1,13 +1,11 @@
 package com.communication.service;
 
+import com.communication.exceptionHandler.CreateMessageExeception;
 import com.communication.model.SchedulingOrder;
 import com.communication.repository.SchedulingOrderRepository;
 import com.communication.mapper.SchedulingOrderMapper;
 import com.communication.dto.SchedulingOrderRequest;
-import com.communication.dto.SchedulingOrderStatusRequest;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class SchedulingOrderService {
@@ -26,12 +24,12 @@ public class SchedulingOrderService {
         return schedulingOrderRepository.save(schedulingOrder);
     }
 
-    public Optional<SchedulingOrder> finById(Long id){
-        return  this.schedulingOrderRepository.findById(id);
+    public SchedulingOrder finById(Long id){
+        return  this.schedulingOrderRepository.findById(id).orElseThrow(() -> CreateMessageExeception.createObjectMessageNotFoundExeception("messagem.notfound",""+id));
     }
 
-    public SchedulingOrder cancel(SchedulingOrderStatusRequest schedulingOrderStatusRequest) {
-        SchedulingOrder schedulingOrder = schedulingOrderRepository.findById(schedulingOrderStatusRequest.getId()).get();
+    public SchedulingOrder cancel(Long id) {
+        SchedulingOrder schedulingOrder = this.finById(id);
         schedulingOrder.cancel();
         return schedulingOrderRepository.save(schedulingOrder);
     }

@@ -9,7 +9,6 @@ import lombok.Setter;
 @Setter
 public class ObjectMessageException extends RuntimeException {
 
-	private static final long serialVersionUID = 7834873907724860678L;
 	private HttpStatus status = HttpStatus.BAD_REQUEST;
 	private String field;
 	

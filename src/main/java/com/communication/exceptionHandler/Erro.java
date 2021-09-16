@@ -8,8 +8,9 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class Erro {
-	private String messageForUser;
-	private String nameField;
+	private String status;
+	private String messageErro;
+	private String value;
 	private String messageForDeveloper;
 
 }

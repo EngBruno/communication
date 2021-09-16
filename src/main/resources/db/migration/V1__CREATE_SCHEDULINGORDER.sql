@@ -4,7 +4,7 @@ CREATE TABLE communication.scheduling_order (
 	cell_phone varchar(50) NOT NULL,
 	email varchar(100) NOT NULL,
     message varchar(255) NOT NULL,
-    status BOOLEAN NOT NULL,
+    activity BOOLEAN NOT NULL,
     type_communication varchar(20) NOT NULL,
 	CONSTRAINT scheduling_order_pkey PRIMARY KEY (id)
 );
