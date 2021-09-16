@@ -1,5 +1,7 @@
 package com.communication.schedulingorder;
 
+import com.communication.model.SchedulingOrder;
+import com.communication.repository.SchedulingOrderRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;

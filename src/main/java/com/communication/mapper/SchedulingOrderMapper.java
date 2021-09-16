@@ -1,5 +1,8 @@
-package com.communication.schedulingorder;
+package com.communication.model;
 
+import com.communication.model.SchedulingOrder;
+import com.communication.dto.SchedulingOrderRequest;
+import com.communication.dto.SchedulingOrderResponse;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel="spring")

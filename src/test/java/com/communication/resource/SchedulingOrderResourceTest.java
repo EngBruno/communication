@@ -1,7 +1,7 @@
 package com.communication.schedulingorder;
 
 import com.communication.config.PostgresqlContainerCustom;
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.communication.dto.SchedulingOrderRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.ClassRule;
 import org.junit.Test;
