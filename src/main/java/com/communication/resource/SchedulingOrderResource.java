@@ -1,6 +1,10 @@
-package com.communication.schedulingorder;
+package com.communication.resource;
 
 import com.communication.model.SchedulingOrder;
+import com.communication.mapper.SchedulingOrderMapper;
+import com.communication.dto.SchedulingOrderRequest;
+import com.communication.dto.SchedulingOrderResponse;
+import com.communication.dto.SchedulingOrderStatusRequest;
 import com.communication.service.SchedulingOrderService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +27,7 @@ public class SchedulingOrderResource {
     @PostMapping
     public ResponseEntity<Void> createSchedulingOrder(@Valid @RequestBody SchedulingOrderRequest schedulingOrderRequest, HttpServletResponse response){
         SchedulingOrder model = this.schedulingOrderService.save(schedulingOrderRequest);
-        return ResponseEntity.created(URI.create("/conta_bancaria/"+model.getId())).build();
+        return ResponseEntity.created(URI.create("/ordem/"+model.getId())).build();
     }
 
     @GetMapping("/{id}")

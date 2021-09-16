@@ -1,4 +1,4 @@
-package com.communication.schedulingorder;
+package com.communication.resource;
 
 import com.communication.config.PostgresqlContainerCustom;
 import com.communication.dto.SchedulingOrderRequest;
@@ -14,10 +14,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.testcontainers.containers.PostgreSQLContainer;
-
 import java.time.LocalDate;
-
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 

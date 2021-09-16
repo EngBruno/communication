@@ -1,4 +1,4 @@
-package com.communication.schedulingorder;
+package com.communication.model;
 
 import lombok.*;
 
@@ -6,8 +6,9 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Getter
-@Entity
 @Builder
+@Entity
+@AllArgsConstructor
 @Table(schema = "communication",name = "scheduling_order")
 public class SchedulingOrder {
 

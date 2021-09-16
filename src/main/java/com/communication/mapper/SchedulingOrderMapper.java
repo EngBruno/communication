@@ -1,4 +1,4 @@
-package com.communication.model;
+package com.communication.mapper;
 
 import com.communication.model.SchedulingOrder;
 import com.communication.dto.SchedulingOrderRequest;

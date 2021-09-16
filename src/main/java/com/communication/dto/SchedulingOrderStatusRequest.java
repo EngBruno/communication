@@ -1,4 +1,4 @@
-package com.communication.schedulingorder;
+package com.communication.dto;
 
 import lombok.Getter;
 import lombok.Setter;

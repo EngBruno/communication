@@ -1,7 +1,10 @@
-package com.communication.schedulingorder;
+package com.communication.service;
 
 import com.communication.model.SchedulingOrder;
 import com.communication.repository.SchedulingOrderRepository;
+import com.communication.mapper.SchedulingOrderMapper;
+import com.communication.dto.SchedulingOrderRequest;
+import com.communication.dto.SchedulingOrderStatusRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;

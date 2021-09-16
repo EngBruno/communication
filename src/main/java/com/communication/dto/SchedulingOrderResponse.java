@@ -1,4 +1,4 @@
-package com.communication.schedulingorder;
+package com.communication.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
@@ -7,6 +7,7 @@ import java.time.LocalDate;
 
 @Getter
 @Builder
+@AllArgsConstructor
 public class SchedulingOrderResponse {
 
     private final Long id;

@@ -12,7 +12,6 @@
 	<artifactId>communication</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>communication</name>
-	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
 		<jacoco.version>0.8.2</jacoco.version>
