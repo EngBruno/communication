@@ -23,3 +23,9 @@ Estou utilizando o Jacoco para verificar a cobertuda dos testes, rode o comando 
 
 
 Os testes estao rodando com o (testcontainer) https://www.testcontainers.org/ ,  para executar os testes é necessario tem o docker instalado na maquina.
+
+
+Caso queria rodar o projeto manualmente bastar : 
+
+1. `docker run --name postgresql-container -p 5432:5432 -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres -e POSTGRES_DB=communication -d postgres`
+2. Startar  o projeto em sua IDE de preferencia
