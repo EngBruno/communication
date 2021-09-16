@@ -7,6 +7,7 @@ O projeto esta utilizando as seguintes tecnológias :
 * Jacoco 
 * TestContainer
 * Swagger
+* flyway
 
 Para inicar o projeto basta seguir os seguintes passo:
 
